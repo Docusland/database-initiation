@@ -17,18 +17,16 @@ from Products, Categories, Suppliers
 WHERE Products.SupplierID = Suppliers.SupplierID
 AND Products.CategoryID = Categories.CategoryID
 ```
+
+ou
+
+```sql
+SELECT ProductName, SupplierName, CategoryName FROM Products P INNER JOIN Suppliers S ON (P.SupplierId = S.SupplierID) INNER JOIN Categories C ON (P.CategoryID = C.CategoryID);
+```
 --> 77 enregistrements
 
-# Question 4
-```sql
-SELECT Categories.CategoryName, count(OrderDetails.OrderDetailID) as "Nb Order Details", sum(OrderDetails.Quantity*Products.Price) as "Sum Order Cost"
-FROM Categories, OrderDetails, Products
-WHERE Categories.CategoryID = Products.CategoryID
-AND Products.ProductID = OrderDetails.ProductID
-Group by Categories.CategoryName
-```
 
-# Question 5
+# Question 4
 ```sql
 CREATE TABLE utilisateur
 (
@@ -43,6 +41,15 @@ CREATE TABLE utilisateur
     nombre_achat INT
 )
 ```
-# Question 6
+# Question 5
 Il s'agit du principe de cardinalité. Nous pourrions par exemple mettre le code postal et la ville dans une autre table. Et les pays encore dans une troisieme table. 
 
+
+# Question 6
+```sql
+SELECT Categories.CategoryName, count(OrderDetails.OrderDetailID) as "Nb Order Details", sum(OrderDetails.Quantity*Products.Price) as "Sum Order Cost"
+FROM Categories, OrderDetails, Products
+WHERE Categories.CategoryID = Products.CategoryID
+AND Products.ProductID = OrderDetails.ProductID
+Group by Categories.CategoryName
+```
